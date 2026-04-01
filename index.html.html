@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Breach</title>
+
+<style>
+body {
+  background: black;
+  color: lime;
+  font-family: monospace;
+  margin: 0;
+  padding: 10px;
+}
+
+#terminal {
+  height: 100vh;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+</style>
+</head>
+
+<body>
+
+<div id="terminal"></div>
+
+<script>
+let text = [
+"Initializing system...",
+"Bypassing firewall...",
+"Access granted ✔",
+"Injecting exploit...",
+"Reading messages...",
+"Accessing camera...",
+"Tracking GPS...",
+"Uploading data...",
+"Root access gained..."
+];
+
+let term = document.getElementById("terminal");
+
+function typeLine(line, i = 0) {
+  if (i < line.length) {
+    term.innerHTML += line[i];
+    setTimeout(() => typeLine(line, i + 1), 30);
+  } else {
+    term.innerHTML += "\n";
+    setTimeout(runLines, 300);
+  }
+}
+
+function runLines() {
+  let line = text[Math.floor(Math.random() * text.length)];
+  typeLine("> " + line);
+}
+
+runLines();
+setInterval(runLines, 2000);
+
+// Fake back button block
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+  history.pushState(null, null, location.href);
+};
+
+// 30 sec pore reveal
+setTimeout(() => {
+  document.body.innerHTML =
+    "<h1 style='color:red;text-align:center;margin-top:50%'>😂 APRIL FOOL 😂</h1>";
+}, 30000);
+</script>
+
+</body>
+</html>
